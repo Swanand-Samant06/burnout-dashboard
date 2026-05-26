@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burnout Risk Analyzer</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        .container {
+            width: 500px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.12);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00c6ff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0072ff;
+        }
+
+        #result {
+           margin-top: 25px;
+    background: rgba(255,255,255,0.18);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 6px solid #00ffcc;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+        .low-risk {
+    border-left-color: #00ff99 !important;
+}
+
+.medium-risk {
+    border-left-color: #ffd000 !important;
+}
+
+.high-risk {
+    border-left-color: #ff4d4d !important;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Burnout Risk Analyzer</h1>
+
+        <label>Sleep Duration</label>
+        <select id="sleep">
+            <option>8+ hours</option>
+            <option>6-7 hours</option>
+            <option>4-5 hours</option>
+            <option>Less than 4 hours</option>
+            <option>Extremely sleep deprived</option>
+        </select>
+
+        <label>Work / Study Hours</label>
+        <select id="work">
+            <option>0-3 hours</option>
+            <option>4-6 hours</option>
+            <option>7-9 hours</option>
+            <option>10+ hours</option>
+        </select>
+
+        <label>Stress State</label>
+        <select id="stress">
+            <option>Calm and focused</option>
+            <option>Slightly pressured</option>
+            <option>Mentally fatigued</option>
+            <option>Highly stressed</option>
+            <option>Completely overwhelmed</option>
+        </select>
+
+        <label>Energy State</label>
+        <select id="energy">
+            <option>Peak productivity</option>
+            <option>Stable energy</option>
+            <option>Slightly fatigued</option>
+            <option>Mentally drained</option>
+        </select>
+
+        <label>Screen Time</label>
+        <select id="screen">
+            <option>Less than 2 hours</option>
+            <option>2-5 hours</option>
+            <option>6-8 hours</option>
+        </select>
+
+        <label>Break Frequency</label>
+        <select id="breaks">
+            <option>Frequent breaks</option>
+            <option>Occasional breaks</option>
+            <option>Rarely take breaks</option>
+        </select>
+
+        <label>Mood State</label>
+        <select id="mood">
+            <option>Calm</option>
+            <option>Neutral</option>
+            <option>Anxious</option>
+        </select>
+
+        <button onclick="analyzeBurnout()">
+            Analyze Burnout
+        </button>
+
+        <div id="result">
+            <h2>📊 Burnout Analysis Result</h2>
+
+    <p>Your burnout analysis will appear here.</p>
+        </div>
+
+    </div>
+<script>
+
+async function analyzeBurnout() {
+
+    const data = {
+        sleep_duration: document.getElementById("sleep").value,
+        work_hours: document.getElementById("work").value,
+        stress_state: document.getElementById("stress").value,
+        energy_state: document.getElementById("energy").value,
+        screen_time: document.getElementById("screen").value,
+        break_frequency: document.getElementById("breaks").value,
+        mood_state: document.getElementById("mood").value
+    };
+
+    const response = await fetch("http://127.0.0.1:8000/analyze", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    const resultBox = document.getElementById("result");
+
+let riskClass = "";
+
+if(result.risk_level.includes("Low")) {
+    riskClass = "low-risk";
+}
+else if(result.risk_level.includes("Moderate")) {
+    riskClass = "medium-risk";
+}
+else {
+    riskClass = "high-risk";
+}
+
+resultBox.className = riskClass;
+
+resultBox.innerHTML = `
+    <h2>📊 Burnout Analysis Result</h2>
+
+    <h3>🔥 Burnout Score: ${result.burnout_score}/100</h3>
+
+    <p><strong>⚠️ Risk Level:</strong> ${result.risk_level}</p>
+
+    <p><strong>⚡ Productivity State:</strong> ${result.productivity_state}</p>
+
+    <p><strong>💡 Recommendations:</strong></p>
+
+    <ul>
+        ${result.recommendations.map(item => `<li>${item}</li>`).join("")}
+    </ul>
+`;
+}
+
+
+</script>
+</body>
+
+</html>
