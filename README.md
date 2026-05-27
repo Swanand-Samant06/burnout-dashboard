@@ -322,7 +322,7 @@ in browser.
 # Screenshots
 ![alt text](image-5.png)
 
-Dropdown options for input:
+# Dropdown options for input:
 
 ![alt text](image-6.png)
 
@@ -330,11 +330,11 @@ Dropdown options for input:
 
 ![alt text](image-8.png)
 
-Fast API documentation:
+# Fast API documentation:
 
 ![alt text](image-9.png)
 
-logic behind how recommendations are generated:
+# logic behind how recommendations are generated:
 
 ![alt text](image-10.png)
 
