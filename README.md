@@ -343,7 +343,8 @@ logic behind how recommendations are generated:
 
 ---
 
-# Developed by:
+# Developed by: Swanand Samant
 
-Swanand Shashank Samant
+
+
 
