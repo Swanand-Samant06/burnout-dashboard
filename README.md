@@ -53,7 +53,7 @@ The final burnout score is calculated out of 100.
 |---|---|
 | 8+ hours | 0 |
 | 6–8 hours | 10 |
-| 4–6 hours | 15 |
+| 4–5 hours | 15 |
 | Less than 4 hours | 20 |
 | Extremely sleep deprived | 20 |
 
@@ -75,7 +75,8 @@ The final burnout score is calculated out of 100.
 | Option | Score |
 |---|---|
 | Calm and focused | 0 |
-| Slightly stressed | 10 |
+| Slightly fatigued | 5 |
+| Mentally Fatigued | 10 |
 | Highly stressed | 15 |
 | Completely overwhelmed | 20 |
 
@@ -86,9 +87,9 @@ The final burnout score is calculated out of 100.
 | Option | Score |
 |---|---|
 | Peak productivity | 0 |
-| Slightly tired | 5 |
-| Mentally exhausted | 10 |
-| Burned out | 15 |
+| Stable energy | 5 |
+| Slightly Fatigued | 10 |
+| Mentally Drained | 15 |
 
 ---
 
@@ -97,9 +98,9 @@ The final burnout score is calculated out of 100.
 | Option | Score |
 |---|---|
 | Less than 2 hours | 0 |
-| 2–5 hours | 2 |
-| 5–8 hours | 4 |
-| 8+ hours | 5 |
+| 2–5 hours | 5 |
+| 6–8 hours | 10 |
+
 
 ---
 
@@ -108,7 +109,7 @@ The final burnout score is calculated out of 100.
 | Option | Score |
 |---|---|
 | Frequent breaks | 0 |
-| Sometimes take breaks | 5 |
+| Occassional Breaks | 5 |
 | Rarely take breaks | 15 |
 
 ---
@@ -118,8 +119,8 @@ The final burnout score is calculated out of 100.
 | Option | Score |
 |---|---|
 | Calm | 0 |
-| Slightly drained | 5 |
-| Emotionally exhausted | 10 |
+| Neutral | 5 |
+| Anxious | 10 |
 
 ---
 
@@ -127,19 +128,19 @@ The final burnout score is calculated out of 100.
 
 | Parameter | Selected Input | Score |
 |---|---|---|
-| Sleep Duration | 4–6 hours | 15 |
+| Sleep Duration | 4–5 hours | 15 |
 | Work Hours | 10+ hours | 15 |
 | Stress State | Highly stressed | 15 |
-| Energy State | Mentally exhausted | 10 |
-| Screen Time | 5–8 hours | 4 |
-| Break Frequency | Sometimes take breaks | 5 |
-| Mood State | Slightly drained | 5 |
+| Energy State | Mentally drained | 10 |
+| Screen Time | 2-5 hours | 5 |
+| Break Frequency | occassionaly take breaks | 5 |
+| Mood State | neutral | 5 |
 
 ### Total Burnout Score
 
-15 + 15 + 15 + 10 + 4 + 5 + 5 = 69
+15 + 15 + 15 + 10 + 5 + 5 + 5 = 70
 
-Final Burnout Score = 69/100
+Final Burnout Score = 70/100
 
 ---
 
@@ -337,6 +338,8 @@ in browser.
 # logic behind how recommendations are generated:
 
 ![alt text](image-10.png)
+
+
 
 
 
